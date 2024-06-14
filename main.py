@@ -13,14 +13,31 @@ def grayscale_to_color(image_path, output_path):
     # Create an empty color image
     color_image = cv2.cvtColor(gray_image, cv2.COLOR_GRAY2BGR)
 
-    # Define color mapping: You can customize this as needed
-    def get_color(value):
-        if value < 85:
-            return (255, 0, 0)  # Blue
-        elif value < 170:
+    # Define color mapping
+    
+    def get_color(value):       
+        if value < 28:
+            return (128, 0, 128)  # Purple
+        elif value < 56:
+            return (75, 0, 130)  # Indigo
+        elif value < 84:
+            return (0, 0, 255)  # Blue
+        elif value < 112:
+            return (0, 255, 255)  # Cyan
+        elif value < 140:
             return (0, 255, 0)  # Green
+        elif value < 168:
+            return (173, 255, 47)  # Green Yellow
+        elif value < 196:
+            return (255, 255, 0)  # Yellow
+        elif value < 224:
+            return (255, 165, 0)  # Orange
+        elif value < 252:
+            return (255, 69, 0)  # Orange Red
         else:
-            return (0, 0, 255)  # Red
+            return (255, 0, 0)  # Red
+
+
 
     # Apply color mapping
     for i in range(gray_image.shape[0]):
@@ -43,7 +60,6 @@ if __name__ == "__main__":
     colored_image = grayscale_to_color(input_path, output_path)
     
     if colored_image is not None:
-        # Display the image using OpenCV (optional)
         cv2.imshow('Colored Image', colored_image)
         cv2.waitKey(0)
         cv2.destroyAllWindows()
